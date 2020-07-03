@@ -1,7 +1,7 @@
 from nytimesarticle import articleAPI
 import time
 
-api = articleAPI('WuHFOtAb5V1If1s5QUJzs1dkOgDYBGgS')
+api = articleAPI('')
 articles = api.search( q = ['NYC','New York'], fq = {'headline':['New York','Connecticut','NYC','New Jersey'], 'source':['Reuters','AP', 'The New York Times']}, begin_date = 20200101, page=1 )
 
 def parse_articles(articles):
@@ -53,21 +53,9 @@ for i in range(1,10): #NYT limits pager to first 100 pages. But rarely will you 
     time.sleep(5)
 print(all_articles)
 
-
-
-
-    # page=str(i)
-    # r = requests.get("http://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20100101&q=terrorist+attack&page="+page+"&api-key=***")
-    # data = r.json()
-    # article = data['response']['docs']
-    # for url in article:
-    #     print(url["web_url"])
-
-# #
-# # #
 import csv
 keys = all_articles[0].keys()
-with open('/Users/jmlessoff/Documents/covid.csv', 'wb') as output_file:
+with open('.csv', 'wb') as output_file:
     dict_writer = csv.DictWriter(output_file, keys)
     dict_writer.writeheader()
     dict_writer.writerows(all_articles)
